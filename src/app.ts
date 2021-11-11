@@ -3,13 +3,14 @@ import "reflect-metadata";
 import express, { Request, Response } from "express";
 import { createConnection } from "typeorm";
 import { Digit } from "./entity/Digit";
+import { env } from "process";
 
 createConnection().then((connection) => {
 	const digitRepo = connection.getRepository(Digit);
 
 	const app = express();
 
-	const PORT = 3000;
+	const PORT = process.env.PORT || 3000;
 
 	app.use(express.static(pathJoin(__dirname + "/../public")));
 	app.use("/digit", express.json());
