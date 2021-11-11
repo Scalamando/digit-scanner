@@ -1,0 +1,38 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Mochiy Pop P One", sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px 10px;
+	gap: 1.25rem;
+}
+
+#canvas {
+	border: 1px solid #ccc;
+}
+
+#canvas,
+button {
+	border-radius: 0.5rem;
+}
+
+button {
+	border: none;
+	background-color: rgb(35, 77, 155);
+	color: white;
+	font-weight: 600;
+	font-size: 1.5rem;
+	padding: 1rem 1.5rem;
+	letter-spacing: 2px;
+}
+
+@media screen and (min-width: 640px) {
+	body {
+		padding: 50px;
+	}
+}
