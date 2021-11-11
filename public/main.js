@@ -65,7 +65,7 @@ function main() {
 		await fetch("/digit", {
 			method: "POST",
 			body: JSON.stringify({
-				digit: currentDigit,
+				value: currentDigit,
 				image,
 			}),
 			headers: {
