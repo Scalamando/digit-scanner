@@ -2,11 +2,14 @@
 	"name": "digit-scanner",
 	"version": "1.0.0",
 	"description": "",
-	"main": "build/app.js",
+	"main": "dist/app.js",
 	"scripts": {
 		"build": "tsc --project ./",
 		"start:dev": "ts-node src/app.ts",
 		"start:prod": "set NODE_ENV=production && node dist/app.js"
+	},
+	"engines": {
+		"node": "16.13.0"
 	},
 	"keywords": [],
 	"author": "",
