@@ -9,6 +9,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get("/digits", async (req: Request, res: Response) => {
 	const controller = new DigitController();
+	const count = await controller.countDigits();
 	let digits = await controller.getDigits();
 
 	const isSorted = req.query.sorted === "true";
@@ -18,19 +19,22 @@ router.get("/digits", async (req: Request, res: Response) => {
 	}
 
 	const decodedDigits = digits.map((digit) => ({
-			...digit,
-			image: digit.image.toString("base64"),
+		...digit,
+		image: digit.image.toString("base64"),
 	}));
 
 	res.render("digits", {
 		digits: decodedDigits,
 		sorted: isSorted,
+		count,
 	});
 });
 
 router.get("/digits/:id", async (req: Request, res: Response) => {
 	const controller = new DigitController();
 	const digits = await controller.getDigits();
+	const count = await controller.countDigits();
+
 	const selectedDigits = digits.filter(
 		(digit) => digit.value === Number(req.params.id)
 	);
@@ -43,6 +47,7 @@ router.get("/digits/:id", async (req: Request, res: Response) => {
 	res.render("digits", {
 		selected: Number(req.params.id),
 		digits: decodedDigits,
+		count,
 	});
 });
 

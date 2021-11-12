@@ -38,6 +38,7 @@
 		<h1>
             <a href="/">Diese Zahlen haben wir gemalt! ¯\_(ツ)_/¯</a>
         </h1>
+        <h2>Schon ganze <%= count %> Zahlen! 😱</h2>
         <div class="option-container">
             <div>
                 <label for="filter">Filter</label>
@@ -57,7 +58,7 @@
                     <% } %>
                 </select>
             </div>
-            <% if(!locals.selected) { %>
+            <% if(locals.selected == null) { %>
                 <div>
                     <label for="sorted">Sortiert</label>
                     <input
