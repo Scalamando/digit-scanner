@@ -29,3 +29,12 @@ jobs:
           tags: scalamando/digit-scanner:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DigitalOcean App Platform deployment
+        uses: digitalocean/app_action@main
+        with:
+          app_name: digit-scanner
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
