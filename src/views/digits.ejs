@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/css/main.css" />
+        <style>
+            .digit-container {
+                width: min(100vw, 800px);
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: auto;
+                gap: 1rem;
+                margin: 1rem;
+            }
+
+            .option-container {
+                display: flex;
+                gap: 1rem;
+            }
+
+            @media screen and (min-width: 640px) {
+	            .digit-container {
+	            	grid-template-columns: repeat(6, 1fr);
+	            }
+            }
+        </style>
+		<title>Unser eigener Datensatz</title>
+	</head>
+	<body>
+		<h1>
+            <a href="/">Diese Zahlen haben wir gemalt! ¯\_(ツ)_/¯</a>
+        </h1>
+        <div class="option-container">
+            <div>
+                <label for="filter">Filter</label>
+                <select name="filter" id="filter">
+                    <% for(let i = -1; i < 10; i++) { %>
+                        <option
+                            value=<%= i %>
+                            <%-
+                                (locals.selected != null
+                                    ? locals.selected === i
+                                    : i === -1)
+                                && 'selected'
+                            %>
+                        >
+                            <%= i > -1 ? i : "Alle" %>
+                        </option>
+                    <% } %>
+                </select>
+            </div>
+            <% if(!locals.selected) { %>
+                <div>
+                    <label for="sorted">Sortiert</label>
+                    <input
+                        type="checkbox"
+                        id="sorted"
+                        <%- locals.sorted && 'checked' %>
+                    />
+                </div>
+            <% } %>
+        </div>
+		<div class="digit-container">
+			<% digits.forEach(digit => { %>
+                <%- include('partials/digit', {digit}) %>
+            <% }); %>
+		</div>
+        <script>
+            const filterElement = document.getElementById('filter');
+            const sortedElement = document.getElementById('sorted');
+
+            filterElement.addEventListener("change", (e) => {
+                window.location.href =
+                    `/digits${
+                        e.target.value > -1 ? '/' + e.target.value : ''
+                    }`;
+            });
+
+            if(sortedElement) {
+                sortedElement.addEventListener("click", (e) => {
+                    window.location.href = `/digits?sorted=${e.target.checked}`;
+                });
+            }
+        </script>
+	</body>
+</html>

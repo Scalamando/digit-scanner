@@ -7,9 +7,11 @@
 		"esModuleInterop": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"rootDir": "./src",
-		"outDir": "./dist"
+		"outDir": "./build",
+		"baseUrl": "./",
+		"strict": true
 	},
 	"lib": ["es2015"],
-	"include": ["**/*"]
+	"include": ["src/**/*"],
+	"exclude": ["src/public"]
 }
