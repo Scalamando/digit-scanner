@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { join as joinPaths } from "path";
 import { createConnection } from "typeorm";
 import express, { Application } from "express";
+import swaggerUi from "swagger-ui-express";
 
 import Router from "./routes";
 import dbConfig from "./config/database";
@@ -15,6 +16,16 @@ app.set("view engine", "ejs");
 
 app.use(express.json());
 app.use(express.static(joinPaths(__dirname, "public")));
+
+app.use(
+	"/docs",
+	swaggerUi.serve,
+	swaggerUi.setup(undefined, {
+		swaggerOptions: {
+			url: "/swagger.json",
+		},
+	})
+);
 
 app.use(Router);
 

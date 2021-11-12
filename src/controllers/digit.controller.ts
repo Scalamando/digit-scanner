@@ -44,7 +44,7 @@ export default class DigitController {
 	}
 
 	@Get("/count")
-	public async countDigits(): Promise<Number> {
+	public async countDigits(): Promise<number> {
 		return countDigits();
 	}
 

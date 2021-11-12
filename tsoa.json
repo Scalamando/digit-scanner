@@ -2,8 +2,9 @@
 	"entryFile": "src/index.ts",
 	"noImplicitAdditionalProperties": "throw-on-extras",
 	"spec": {
-		"outputDirectory": "public",
-		"specVersion": 3
+		"outputDirectory": "src/public",
+		"specVersion": 3,
+		"basePath": "/api"
 	},
 	"ignore": ["**/node_modules/**"]
 }

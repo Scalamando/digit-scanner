@@ -4,5 +4,7 @@ build
 
 .cache
 
+swagger.json
+
 .env*
 !.env.example
