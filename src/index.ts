@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { join as joinPaths } from "path";
 import { createConnection } from "typeorm";
 import express, { Application } from "express";
+import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 
 import Router from "./routes";
@@ -15,6 +16,7 @@ app.set("views", joinPaths(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.json());
+app.use(morgan("tiny"));
 app.use(express.static(joinPaths(__dirname, "public")));
 
 app.use(
