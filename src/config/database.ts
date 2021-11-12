@@ -13,7 +13,8 @@ const config: ConnectionOptions = {
 	logging: true,
 	...(process.env.NODE_ENV === "production" && {
 		ssl: {
-			rejectUnauthorized: false,
+			rejectUnauthorized: true,
+			ca: process.env.CA_CERT,
 		},
 	}),
 };
