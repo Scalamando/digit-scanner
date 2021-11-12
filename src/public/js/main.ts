@@ -71,6 +71,10 @@ function main() {
 
 		const image = canvas.toDataURL({ format: "jpeg", quality: 80 });
 
+		canvas.getElement().parentElement!.classList.add("loading");
+
+		clearCanvas();
+
 		await fetch("/api/digits", {
 			method: "POST",
 			body: JSON.stringify({
@@ -85,8 +89,9 @@ function main() {
 		increaseCounter();
 		displayCounter();
 
-		clearCanvas();
 		showNextDigit();
+
+		canvas.getElement().parentElement!.classList.remove("loading");
 	}
 
 	function increaseCounter() {

@@ -44,6 +44,12 @@ button {
 	font-size: 1.5rem;
 	padding: 1rem 1.5rem;
 	letter-spacing: 2px;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+
+button:hover {
+	transform: scale(1.1);
 }
 
 .digit-figure {
@@ -59,6 +65,34 @@ button {
 	padding: 8px;
 	border-radius: 12px;
 	border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.loading {
+	position: relative;
+}
+
+.loading:after {
+	content: " ";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	display: block;
+	width: 128px;
+	height: 128px;
+	border-radius: 50%;
+	border: 12px solid #333;
+	border-color: #333 transparent #333 transparent;
+	animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
 }
 
 @media screen and (min-width: 640px) {
