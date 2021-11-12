@@ -22,5 +22,11 @@ export const getDigit = async (id: number): Promise<Digit | null> => {
 export const createDigit = async (payload: IDigitPaylod): Promise<Digit> => {
 	const digitRepository = getRepository(Digit);
 	const digit = new Digit();
+
 	return digitRepository.save({ ...digit, ...payload });
+};
+
+export const countDigits = async (): Promise<Number> => {
+	const digitRepository = getRepository(Digit);
+	return digitRepository.count();
 };
