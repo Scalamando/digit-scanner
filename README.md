@@ -3,7 +3,7 @@
 [![ci](https://github.com/Scalamando/digit-scanner/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Scalamando/digit-scanner/actions/workflows/ci.yml)
 [![docker_size](https://badgen.net/docker/size/scalamando/digit-scanner/latest?icon=docker&label=size)](https://hub.docker.com/repository/docker/scalamando/digit-scanner)
 
-A web app to collect handwritten digits for data-science use cases. Built with Express, PostgreSQL and TypeORM.
+A web app to collect handwritten digits for data-science use cases. Built with Express, EJS, PostgreSQL and TypeORM.
 
 ## Usage
 
