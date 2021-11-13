@@ -1,6 +1,8 @@
 node_modules
 build
 
+Dockerfile
+
 .github
 
 .parcel-cache
