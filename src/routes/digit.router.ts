@@ -38,6 +38,7 @@ router.get("/:id/jpeg", async (req: Request, res: Response) => {
     const controller = new DigitController();
     const response = await controller.getDigitAsJpeg(req.params.id);
 
+    if (!response) return res.status(404).send({ message: "No digit found" });
     res.type("image/jpeg").send(response);
 });
 

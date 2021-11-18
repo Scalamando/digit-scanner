@@ -45,11 +45,11 @@ export default class DigitController {
     }
 
     @Get("/:id/jpeg")
-    public async getDigitAsJpeg(@Path() id: string): Promise<Buffer> {
+    public async getDigitAsJpeg(@Path() id: string): Promise<Buffer | null> {
         const digit = await Repository.getDigit(Number(id));
 
         if (!digit) {
-            throw Error("No digit with this id");
+            return null;
         }
 
         return digit.image;
