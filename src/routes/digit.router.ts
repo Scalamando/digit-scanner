@@ -7,9 +7,13 @@ interface DigitStoreRequest extends Request {
 	body: { value: number; image: string };
 }
 
-router.get("/", async (_req: Request, res: Response) => {
+interface DigitGetAllRequest extends Request {
+    query: { fields?: string };
+}
+
+router.get("/", async (req: DigitGetAllRequest, res: Response) => {
 	const controller = new DigitController();
-	const response = await controller.getDigits();
+    const response = await controller.getDigits(req.query.fields?.split(","));
 
 	res.send(response);
 });
@@ -23,7 +27,7 @@ router.post("/", async (req: DigitStoreRequest, res: Response) => {
 	return res.send(response);
 });
 
-router.get("/count", async (_req: Request, res: Response) => {
+router.get("/count", async (_, res: Response) => {
 	const controller = new DigitController();
 	const response = await controller.countDigits();
 

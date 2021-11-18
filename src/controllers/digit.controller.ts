@@ -1,12 +1,7 @@
 import Jimp from "jimp";
-import { Route, Tags, Get, Post, Path, Body } from "tsoa";
+import { Route, Tags, Get, Post, Path, Body, Query } from "tsoa";
 import { Digit } from "../models/digit";
-import {
-	getDigits,
-	createDigit,
-	getDigit,
-	countDigits,
-} from "../repositories/digit";
+import * as Repository from "../repositories/digit";
 
 export interface IDigitRequestPayload {
 	value: number;
@@ -17,8 +12,8 @@ export interface IDigitRequestPayload {
 @Tags("Digit")
 export default class DigitController {
 	@Get("/")
-	public async getDigits(): Promise<Array<Digit>> {
-		return getDigits();
+    public async getDigits(@Query() fields?: string[]): Promise<Array<Digit>> {
+        return Repository.getDigits(fields);
 	}
 
 	@Post("/")
@@ -40,16 +35,17 @@ export default class DigitController {
 					.getBufferAsync(Jimp.MIME_JPEG)
 		);
 
-		return createDigit({ ...body, image });
+        return Repository.createDigit({ ...body, image });
 	}
 
 	@Get("/count")
 	public async countDigits(): Promise<number> {
-		return countDigits();
+        return Repository.countDigits();
+    }
 	}
 
 	@Get("/:id")
 	public async getDigit(@Path() id: string): Promise<Digit | null> {
-		return getDigit(Number(id));
+        return Repository.getDigit(Number(id));
 	}
 }
